@@ -71,4 +71,4 @@ schedule.every(10).minutes.do(TrackerJob)
 
 while True:
     schedule.run_pending()
-    time.sleep(1)
+    time.sleep(60*60)
