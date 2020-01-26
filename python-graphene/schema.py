@@ -10,7 +10,8 @@ class User(graphene.ObjectType):
 
 class Query(graphene.ObjectType):
     # creating a list to display all users
-    users = graphene.List(User)
+    # we can also set limit to display number of users like graphene.List(User, limit=graphene.int())
+    users = graphene.List(User, limit=graphene.int())
     hello = graphene.String()
     is_admin = graphene.Boolean()
 
@@ -21,12 +22,12 @@ class Query(graphene.ObjectType):
         return True
 
     # define a function for users
-    def resolve_users(self, info):
+    def resolve_users(self, info, limit):
         return [
             # creating users with current datetime stamp
             User(id="1", username="Fred", created_at=datetime.now()),
             User(id="2", username="Douglas", created_at=datetime.now()),
-        ]
+        ][:limit]
 schema = graphene.Schema(query=Query)
 
 result = schema.execute(
@@ -34,7 +35,7 @@ result = schema.execute(
     {
         # we've to use dictionary to display all fields otherwise attribute error
         # will rise
-        users {
+        users(limit: 1) {
             id
             username
             createdAt
