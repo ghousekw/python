@@ -1,7 +1,16 @@
 import graphene
 import json
+from datetime import datetime
+
+# creating a user class
+class User(graphene.ObjectType):
+    id = graphene.ID()
+    username = graphene.String()
+    created_at = graphene.DateTime()
 
 class Query(graphene.ObjectType):
+    # creating a list to display all users
+    users = graphene.List(User)
     hello = graphene.String()
     is_admin = graphene.Boolean()
 
@@ -11,12 +20,25 @@ class Query(graphene.ObjectType):
     def resolve_is_admin(sef, info):
         return True
 
+    # define a function for users
+    def resolve_users(self, info):
+        return [
+            # creating users with current datetime stamp
+            User(id="1", username="Fred", created_at=datetime.now()),
+            User(id="2", username="Douglas", created_at=datetime.now()),
+        ]
 schema = graphene.Schema(query=Query)
 
 result = schema.execute(
     '''
     {
-        isAdmin
+        # we've to use dictionary to display all fields otherwise attribute error
+        # will rise
+        users {
+            id
+            username
+            createdAt
+        }
     }
     '''
 )
