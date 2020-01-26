@@ -22,7 +22,7 @@ class Query(graphene.ObjectType):
         return True
 
     # define a function for users
-    def resolve_users(self, info, limit):
+    def resolve_users(self, info, limit=None):
         return [
             # creating users with current datetime stamp
             User(id="1", username="Fred", created_at=datetime.now()),
@@ -35,7 +35,7 @@ result = schema.execute(
     {
         # we've to use dictionary to display all fields otherwise attribute error
         # will rise
-        users(limit: 1) {
+        users {
             id
             username
             createdAt
