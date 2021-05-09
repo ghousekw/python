@@ -1,4 +1,0 @@
-mkdir python-graphene
-cd python-graphene
-python3 -m pipenv shell
-pipenv install graphene

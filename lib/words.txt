@@ -1,0 +1,4 @@
+"Like a reciepe or installation instructions, a program is a sequence of steps to be done in order.
+Some steps are conditional, they may be skipped.
+Sometimes a steps or group of steps is to be repeated.
+Sometimes we store a set to steps to be used over and over as needed throughtout the program."
