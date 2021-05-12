@@ -1,11 +1,13 @@
+import os
+
+currentPath = os.getcwd()
 # get file name from user
 name = input("Enter file name: ")
 # read file from user
-handle = open(name)
+handle = open(currentPath,name)
 
 # create a dict() to store data 
 counts = dict()
-
 # by using for loop reading all the lines
 for line in handle:
     # split the line
