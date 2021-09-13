@@ -1,7 +1,7 @@
 # Introduction to Python Development 
 
 
-## CHAPTER 4.7
+## CHAPTER 2.7
 ## Dictionaries (dicts)
 
 1. Learn how to use dictionaries (the dict type) to hold onto key/value information in Python.
